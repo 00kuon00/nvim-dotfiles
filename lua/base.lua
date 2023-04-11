@@ -41,10 +41,11 @@ vim.opt.backspace = {'eol','start', 'indent'}
 -- ファイル環境
 -- -フォーマット
 vim.opt.fileformats = 'dos', 'unix', 'mac'
+vim.cmd([[set encoding=utf-8]])
+vim.cmd([[set fileencodings=cp932,iso-2022-jp,euc-jp,sjis,utf-8]])
 
 -- クリップボード連携
-vim.opt.clipboard:append({unnamedeplus = true})
-
+vim.cmd('set clipboard=unnamed')
 -- マウス有効
 vim.opt.mouse = 'a'
 
@@ -53,3 +54,18 @@ vim.opt.backup = false
 
 -- vimg grepをripgrepに設定
 vim.cmd([[let &grepprg='rg --vimgrep']])
+
+-- normalモードへ移行したとき、IME OFF
+vim.cmd('augroup fcitx')
+vim.cmd('autocmd!')
+vim.cmd("autocmd InsertLeave * :call system('fcitx-remote -c')")
+vim.cmd("autocmd CmdlineLeave * :call system('fcitx-remote -c')")
+vim.cmd('augroup END')
+
+-- grepした際に、quickfixwindowを自動で開く 
+vim.cmd('autocmd QuickFixCmdPost *grep* cwindow')
+
+-- vimg grepをripgrepに設定
+vim.cmd([[let &grepprg='rg --vimgrep']])
+
+

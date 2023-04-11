@@ -6,6 +6,8 @@ keymap.set('n', 'sr', '<cmd>lua require("telescope.builtin").oldfiles()<cr>',{no
 keymap.set('n', 'sf', '<cmd>lua require("telescope.builtin").find_files()<cr>',{noremap = true})
 keymap.set('n', 'sb', '<cmd>lua require("telescope.builtin").buffers()<cr>',{noremap = true})
 keymap.set('n', 'sh', '<cmd>lua require("telescope.builtin").help_tags()<cr>',{noremap = true})
+keymap.set('n', 'sr', '<cmd>lua require("telescope.builtin").oldfiles()<cr>',{noremap = true})
+keymap.set('n', 'sg', '<cmd>lua require("telescope.builtin").live_grep()<cr>',{noremap = true})
 
 --" <Leader>にSpaceキー割り当て
 vim.cmd([[let mapleader = "\<Space>"]])
@@ -17,7 +19,7 @@ vim.cmd([[nnoremap <silent> <Leader>e <cmd>Fern . -reveal=% -drawer<CR>]])
 vim.api.nvim_set_keymap(
   "n",
   "<space>fb",
-  ":Telescope file_browser",
+  ":Telescope file_browser<cr>",
   { noremap = true }
 )
 
@@ -57,3 +59,7 @@ keymap.set('n', '<C-w><down>', '<C-w>-')
 
 -- Telescope keymapping
 vim.keymap.set('n', 'sr', '<cmd>lua require("telescope.builtin").oldfiles()<cr>',{noremap = true})
+vim.keymap.set('n', '<C-g>', ':vimgrep /<C-r><C-w>/j ** | cw<cr>',{noremap = true})
+
+-- CD
+vim.keymap.set('n', 'CD', '<cmd>cd %:h<CR>',{noremap = true})
